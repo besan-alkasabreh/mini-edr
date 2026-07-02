@@ -1,0 +1,7 @@
+{
+  "server_url": "http://127.0.0.1:8000",
+  "interval_seconds": 10,
+  "response_poll_seconds": 4,
+  "country": "Jordan",
+  "lab_mode": true
+}

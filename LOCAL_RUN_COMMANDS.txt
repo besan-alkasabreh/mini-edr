@@ -1,0 +1,29 @@
+Mini EDR AI - Local Run Commands
+
+Backend:
+cd backend
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --host 127.0.0.1 --port 8000
+
+Dashboard:
+cd dashboard
+npm install
+npm run dev
+username : admin ,password:admin123
+
+Agent from source:
+cd agent
+python -m pip install -r requirements.txt
+python agent.py
+
+Agent executable:
+cd endpoints
+.\agent.exe
+
+Local URLs:
+Backend API: http://127.0.0.1:8000
+API Docs: http://127.0.0.1:8000/docs
+Dashboard: http://127.0.0.1:5173
+
+To remove the DB :
+Remove-Item -Force mini_edr_local.db*

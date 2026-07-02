@@ -1,0 +1,12 @@
+﻿venv/
+node_modules/
+__pycache__/
+*.pyc
+*.log
+*.db
+.env
+backend/.env
+dashboard/.env
+dashboard/dist/
+agent/build/
+agent/dist/
