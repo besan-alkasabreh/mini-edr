@@ -300,50 +300,6 @@ http://127.0.0.1:8000/docs
 
 ---
 
-# Screenshots
-
-Create a folder named:
-
-```text
-screenshots/
-```
-
-Add dashboard screenshots here, for example:
-
-- Dashboard Overview
-- Live Activity
-- Incident Management
-- Agent List
-
----
-
-# GitHub
-
-```bash
-git clone https://github.com/YOUR_USERNAME/mini-edr.git
-cd mini-edr
-```
-
-Then run the Backend, Dashboard, and Agent.
-
----
-
-# Troubleshooting
-
-**Port 8000 already in use**
-
-```powershell
-netstat -ano | findstr :8000
-taskkill /PID PID_NUMBER /F
-```
-
-If the dashboard cannot connect:
-
-- Verify the backend is running.
-- Check `dashboard/.env.local`.
-- Open `/health`.
-
----
 
 # Notes
 
