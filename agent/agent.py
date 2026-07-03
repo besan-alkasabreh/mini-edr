@@ -205,12 +205,7 @@ LOG_BACKUP_COUNT = max(1, env_int("MINI_EDR_LOG_BACKUP_COUNT", 5))
 
 
 def resolve_agent_paths():
-    """Resolve where the agent stores IDs, logs, and diagnostics.
-
-    Analyst mode keeps logs beside the agent file.
-    User endpoint mode keeps logs in ProgramData so the user does not see
-    agent.log/security.log/network.log next to the executable.
-    """
+    
     custom_data_dir = env_path("MINI_EDR_DATA_DIR")
     custom_log_dir = env_path("MINI_EDR_LOG_DIR")
     custom_diagnostics_dir = env_path("MINI_EDR_DIAGNOSTICS_DIR")
@@ -240,7 +235,7 @@ PROGRAM_DATA_DIR, LOG_DIR, DIAGNOSTICS_DIR = resolve_agent_paths()
 
 
 def ensure_agent_data_dirs(data_dir: Path, log_dir: Path, diagnostics_dir: Path):
-    """Create required storage folders safely."""
+    
     for folder in (data_dir, log_dir, diagnostics_dir):
         try:
             folder.mkdir(parents=True, exist_ok=True)
@@ -268,7 +263,7 @@ BLOCKLIST_REVIEW_LOG_PATH = LOG_DIR / "blocklist_review.log"
 
 
 def setup_logging():
-    """Configure local rotating log files for the standalone agent."""
+    
     formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 
     def attach_rotating_file(logger: logging.Logger, path: Path):
@@ -554,7 +549,7 @@ def safe_process_cmdline(proc):
 
 
 def safe_process_exe(proc):
-    """Return process executable path safely."""
+    
     try:
         return proc.exe() or ""
     except (
@@ -933,7 +928,7 @@ def classify_system_metric_event(
 
 
 def process_snapshot():
-    """Safe process snapshot. Avoid psutil attrs that may crash on AccessDenied."""
+    
     snapshot = {}
 
     for proc in psutil.process_iter(["pid", "name"]):
@@ -1153,8 +1148,7 @@ def poll_response_actions():
                 f"type={action.get('action_type')} | target={action.get('target_value')}"
             )
 
-            # Move the workflow from pending -> in_progress so the dashboard shows
-            # that the endpoint actually received and started the action.
+            
             in_progress_resp = HTTP.patch(
                 f"{SERVER_URL}/response-actions/{action_id}/result",
                 json={
@@ -1589,7 +1583,7 @@ def get_latest_suspicious_event():
 
 
 def fallback_current_suspicious_process():
-    """Find any currently suspicious process safely."""
+    
     for proc in psutil.process_iter(["pid", "name"]):
         try:
             name = str(proc.info.get("name") or "")
@@ -1725,7 +1719,7 @@ def extract_behavior_features(processes, connections):
 
 
 def collect_all_processes():
-    """Collect processes for behavior flags without crashing on protected processes."""
+    
     items = []
 
     for proc in psutil.process_iter(["pid", "name"]):
